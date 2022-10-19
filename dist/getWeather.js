@@ -1,11 +1,14 @@
 "use strict";
 const got = require('got');
 const apiKey = require('./apiKey');
-const getWeather = () => {
-    return got(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=London&appid=${apiKey}`)
+const getWeather = (city, callBack) => {
+    return got(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`)
         .then((response) => {
-        console.log(JSON.parse(response.body));
-        return JSON.parse(response.body);
+        const json = JSON.parse(response.body);
+        return callBack(json);
     });
 };
-getWeather();
+const printWeather = (weather) => {
+    console.log(weather);
+};
+getWeather('Southampton', printWeather);

@@ -1,12 +1,16 @@
 const got = require('got')
 const apiKey: string = require('./apiKey')
 
-const getWeather = () => {
-  return got(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=London&appid=${apiKey}`)
+const getWeather = (city: string, callBack: Function) => {
+  return got(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`)
     .then((response: {body: string}) => {
-      console.log(JSON.parse(response.body))
-      return JSON.parse(response.body)
+      const json: JSON = JSON.parse(response.body)
+      return callBack(json)
   })
 }
 
-getWeather()
+const printWeather = (weather: any) => {
+  console.log(weather)
+}
+
+getWeather('Southampton', printWeather)
