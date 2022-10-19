@@ -13,8 +13,4 @@ class WeatherApi {
         });
     }
 }
-const api = new WeatherApi;
-api.fetchWeatherData('Southampton', (weather) => {
-    console.log(weather.main.temp);
-});
 exports.default = WeatherApi;
