@@ -21,10 +21,3 @@ class Weather {
 }
 
 export default Weather;
-
-const api = new WeatherApi;
-const weather = new Weather(api);
-
-weather.fetch('Southampton')
-
-console.log(weather.getWeatherData)
