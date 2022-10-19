@@ -1,7 +1,7 @@
-const got = require('got')
-const apiKey: string = require('./apiKey')
+import got from 'got';
+import apiKey from './apiKey';
 
-const getWeather = (city: string, callBack: Function) => {
+export const getWeather = (city: string, callBack: Function) => {
   return got(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`)
     .then((response: {body: string}) => {
       const json: JSON = JSON.parse(response.body)
